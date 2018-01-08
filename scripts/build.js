@@ -9,7 +9,7 @@ const config = require('../site.config')
 
 const ejsRenderFile = promisify(ejs.renderFile)
 const srcPath = './src'
-const distPath = config.build.outputPath
+const distPath = './public'
 
 // clear destination folder
 fse.emptyDirSync(distPath)
