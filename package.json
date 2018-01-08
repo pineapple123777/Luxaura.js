@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"build": "node ./scripts/build"
-	}
+	},
 	"devDependencies": {
     		"ejs": "^2.5.7",
     		"fs-extra": "^4.0.2",
