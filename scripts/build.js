@@ -31,28 +31,22 @@ globP('**/*.@(md|ejs|html)', { cwd: `${srcPath}/pages` })
           return fse.readFile(`${srcPath}/pages/${file}`, 'utf-8')
         })
         .then((data) => {
-          // extract front matter
-          const pageData = frontMatter(data)
-          const templateConfig = Object.assign({}, config, { page: pageData.attributes })
-          
-          let pageContent  
-          switch (fileData.ext) {
-          case '.md':
-          pageContent = marked(pageData.body)
-          break
-          case '.ejs':
-          pageContent = ejs.render(pageData.body, templateConfig)
-          break
-          default:
-           pageContent = pageData.body
-        }
-        
-        .then((data) => {
           // render page
           const pageData = frontMatter(data)
           const templateConfig = Object.assign({}, config, { page: pageData.attributes })
           let pageContent
 
+          // generate page content according to file type
+          switch (fileData.ext) {
+            case '.md':
+              pageContent = marked(pageData.body)
+              break
+            case '.ejs':
+              pageContent = ejs.render(pageData.body, templateConfig)
+              break
+            default:
+              pageContent = pageData.body
+          }
 
           // render layout with page contents
           const layout = pageData.attributes.layout || 'default'
