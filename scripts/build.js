@@ -1,13 +1,13 @@
 const fse = require('fs-extra')
 const path = require('path')
-const ejs = require('ejs')
+const liquidjs = require('liquidjs')
 const { promisify } = require('util')
 const marked = require('marked')
 const frontMatter = require('front-matter')
 const globP = promisify(require('glob'))
 const config = require('../site.config')
 
-const ejsRenderFile = promisify(ejs.renderFile)
+const liquidjsRenderFile = promisify(liquidjs.renderFile)
 const srcPath = './src'
 const distPath = './public'
 
@@ -18,7 +18,7 @@ fse.emptyDirSync(distPath)
 fse.copy(`${srcPath}/assets`, `${distPath}/assets`)
 
 // read pages
-globP('**/*.@(md|ejs|html)', { cwd: `${srcPath}/pages` })
+globP('**/*.@(md|html)', { cwd: `${srcPath}/pages` })
   .then((files) => {
     files.forEach((file) => {
       const fileData = path.parse(file)
@@ -41,9 +41,6 @@ globP('**/*.@(md|ejs|html)', { cwd: `${srcPath}/pages` })
             case '.md':
               pageContent = marked(pageData.body)
               break
-            case '.ejs':
-              pageContent = ejs.render(pageData.body, templateConfig)
-              break
             default:
               pageContent = pageData.body
           }
@@ -51,7 +48,7 @@ globP('**/*.@(md|ejs|html)', { cwd: `${srcPath}/pages` })
           // render layout with page contents
           const layout = pageData.attributes.layout || 'default'
 
-          return ejsRenderFile(`${srcPath}/layouts/${layout}.ejs`, Object.assign({}, templateConfig, { body: pageContent }))
+          return liquidjsRenderFile(`${srcPath}/layouts/${layout}.html`, Object.assign({}, templateConfig, { body: pageContent }))
         })
         .then((str) => {
           // save the html file
