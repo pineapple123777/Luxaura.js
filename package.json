@@ -2,10 +2,11 @@
 	"name": "Wikify",
 	"version": "0.0.1",
 	"description": "",
+	"author": "Tristian Kelly",
 	"main": "index.js",
 	"scripts": {
-		"build": "node /scripts/build.js",
-		"serve": "serve /public"
+		"build": "node scripts/build.js",
+		"serve": "serve public"
 	},
 	"devDependencies": {
     		"ejs": "^2.5.7",
