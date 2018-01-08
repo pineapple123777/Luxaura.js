@@ -4,7 +4,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"build": "node ./scripts/build"
+		"build": "node ./scripts/build",
+		"serve": "serve ./public"
 	},
 	"devDependencies": {
     		"ejs": "^2.5.7",
