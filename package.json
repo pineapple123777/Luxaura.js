@@ -6,4 +6,11 @@
 	"scripts": {
 		"build": "node ./scripts/build"
 	}
+	"devDependencies": {
+    		"ejs": "^2.5.7",
+    		"fs-extra": "^4.0.2",
+    		"glob": "^7.1.2",
+    		"serve": "^6.0.6",
+    		"standard": "^10.0.3"
+  }
 }
