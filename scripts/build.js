@@ -1,13 +1,10 @@
 const fse = require('fs-extra')
 const path = require('path')
-const liquidjs = require('liquidjs')
 const { promisify } = require('util')
-const marked = require('marked')
-const frontMatter = require('front-matter')
+const ejsRenderFile = promisify(require('ejs').renderFile)
 const globP = promisify(require('glob'))
 const config = require('../site.config')
 
-const liquidjsRenderFile = promisify(liquidjs.renderFile)
 const srcPath = './src'
 const distPath = './public'
 
@@ -17,8 +14,8 @@ fse.emptyDirSync(distPath)
 // copy assets folder
 fse.copy(`${srcPath}/assets`, `${distPath}/assets`)
 
-// read pages
-globP('**/*.@(md|html)', { cwd: `${srcPath}/pages` })
+// read page templates
+globP('**/*.ejs', { cwd: `${srcPath}/pages` })
   .then((files) => {
     files.forEach((file) => {
       const fileData = path.parse(file)
@@ -27,32 +24,16 @@ globP('**/*.@(md|html)', { cwd: `${srcPath}/pages` })
       // create destination directory
       fse.mkdirs(destPath)
         .then(() => {
-          // read page file
-          return fse.readFile(`${srcPath}/pages/${file}`, 'utf-8')
-        })
-        .then((data) => {
           // render page
-          const pageData = frontMatter(data)
-          const templateConfig = Object.assign({}, config, { page: pageData.attributes })
-          let pageContent
-
-          // generate page content according to file type
-          switch (fileData.ext) {
-            case '.md':
-              pageContent = marked(pageData.body)
-              break
-            default:
-              pageContent = pageData.body
-          }
-
-          // render layout with page contents
-          const layout = pageData.attributes.layout || 'default'
-
-          return liquidjsRenderFile(`${srcPath}/layouts/${layout}.html`, Object.assign({}, templateConfig, { body: pageContent }))
+          return ejsRenderFile(`${srcPath}/pages/${file}`, Object.assign({}, config))
         })
-        .then((str) => {
+        .then((pageContents) => {
+          // render layout with page contents
+          return ejsRenderFile(`${srcPath}/layout.ejs`, Object.assign({}, config, { body: pageContents }))
+        })
+        .then((layoutContent) => {
           // save the html file
-          fse.writeFile(`${destPath}/${fileData.name}.html`, str)
+          fse.writeFile(`${destPath}/${fileData.name}.html`, layoutContent)
         })
         .catch((err) => { console.error(err) })
     })
