@@ -1,7 +1,9 @@
 {
 	"name": "Wikify",
 	"version": "0.0.1",
-	"description": "",
+	"description": "A static wiki generator",
+	"repository": "TristianK3604/wikify",
+	"license": "MIT",
 	"author": "Tristian Kelly",
 	"main": "index.js",
 	"scripts": {
