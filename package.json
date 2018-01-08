@@ -5,8 +5,8 @@
 	"author": "Tristian Kelly",
 	"main": "index.js",
 	"scripts": {
-		"build": "node https://raw.githubusercontent.com/TristianK3604/wikify/master/scripts/build.js",
-		"serve": "serve public"
+		"build": "node ./scripts/build",
+		"serve": "serve ./public"
 	},
 	"devDependencies": {
     		"ejs": "^2.5.7",
