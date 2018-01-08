@@ -31,6 +31,10 @@ globP('**/*.@(md|ejs|html)', { cwd: `${srcPath}/pages` })
           return fse.readFile(`${srcPath}/pages/${file}`, 'utf-8')
         })
         .then((data) => {
+          // extract front matter
+          const pageData = frontMatter(data)
+          const templateConfig = Object.assign({}, config, { page: pageData.attributes })
+        .then((data) => {
           // render page
           const pageData = frontMatter(data)
           const templateConfig = Object.assign({}, config, { page: pageData.attributes })
