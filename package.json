@@ -14,14 +14,7 @@
     		"serve": "^6.0.6",
     		"standard": "^10.0.3",
 		"marked": "^0.3.9",
-		"markdown": "*",
-    		"showdown": "*",
-    		"markdown-it": "*",
     		"front-matter": "^2.3.0",
-    		"glob-to-regexp": "0.3.0",
-    		"gulp": "^3.8.11",
-    		"gulp-uglify": "^1.1.0",
-    		"gulp-concat": "^2.5.2",
 		"liquidjs": "^3.0.0"
   }
 }
