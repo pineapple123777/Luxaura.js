@@ -1,9 +1,9 @@
 {
-	"name": "Wikify",
+	"name": "Vanillify",
 	"version": "0.0.1",
-	"description": "A static wiki generator",
-	"repository": "TristianK3604/wikify",
-	"license": "MIT",
+	"description": "A vanilla static site generator",
+	"repository": "TristianK3604/vanillify",
+	"license": "The Unlicense",
 	"author": "Tristian Kelly",
 	"main": "index.js",
 	"scripts": {
