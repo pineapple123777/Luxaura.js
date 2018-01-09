@@ -9,7 +9,7 @@
 	"bin" : { 
 	"wikify build" : "node ./scripts/build",
 	"wikify serve" : "serve ./public"
-	}
+	},
 	"scripts": {
 		"build": "node ./scripts/build",
 		"serve": "serve ./public"
