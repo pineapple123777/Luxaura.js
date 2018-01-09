@@ -19,10 +19,5 @@
     		"serve": "^6.0.6",
     		"standard": "^10.0.3",
 		"strapi": "^1.6.4"
-	},
-	"admin": {
-    	"build": {
-      		"path": "/dashboard"
-    	}
-  	}
+	}
 }
