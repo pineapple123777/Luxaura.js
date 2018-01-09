@@ -1,1 +1,7 @@
 <h2><%= site.title %></h2>
+<div style="text-align:right;" v-else>
+                <div>
+                    <a href="#" onclick="logout();">Logout</a>
+                </div>
+
+                <h2>Hello, {{ user.user_metadata.full_name | user.user_metadata.name | user.email }}</h2></div>
