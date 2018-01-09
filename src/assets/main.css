@@ -16,3 +16,8 @@ html, body, input, * {
   z-index: 20;
   font-weight: 500;
 }
+
+hr {
+    width: 100%;
+    border-style: solid;
+}
