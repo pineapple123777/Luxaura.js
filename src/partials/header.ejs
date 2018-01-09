@@ -1,1 +1,57 @@
 <h2><%= site.title %></h2>
+        <div id="app">
+            <div v-if='message' class="message">{{message}}</div>
+            <div v-else></div>
+
+            <div v-if="user==null">
+                <div class="pure-menu pure-menu-horizontal">
+                    <ul class="pure-menu-list">
+                        <li class="pure-menu-item">
+                            <a href="#" v-on:click.prevent="page='signup'">Sign up</a> |
+                        </li>
+                        <li class="pure-menu-item">
+                            <a href="#" v-on:click.prevent="page=''">Login</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div v-if="page=='signup'" class="signup">
+                    <form class='pure-form' v-on:submit.prevent="signup">
+                        <div><label>Email: </label><input type='text' v-model='signup_email'/></div>
+                        <div><label>Password: </label><input type='password' v-model='signup_password'/></div>
+                        <input type='submit' value='Sign up' class="pure-button"/>
+                    </form>
+                </div>
+
+                <div v-else class="login">
+                    <form class="pure-form" v-on:submit.prevent="login">
+                        <div><label>Email: </label><input type='text' v-model='login_email'/></div>
+                        <div><label>Password: </label><input type='password' v-model='login_password'/></div>
+                        <div><input type='checkbox' v-model='login_remember'/><label>Remember</label></div>
+                        <input type='submit' value='Login' class="pure-button"/>
+                    </form>
+                </div>
+            </div>
+
+            <div v-else>
+                <div>
+                    <a href="#" v-on:click.prevent="logout">Logout</a>
+                </div>
+
+                <h2>Hello, {{ user.email }}</h2>
+
+                <h3>Information</h3>
+                <ul>
+                    <li>Audience: {{ user.aud }}</li>
+                    <li>Role: {{ user.role }}</li>
+                </ul>
+
+                <div v-if="users">
+                    <h3>Users</h3>
+                    <ul>
+                        <li v-for="u in users">{{ u.email }}</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
