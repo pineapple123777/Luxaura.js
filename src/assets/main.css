@@ -1,4 +1,4 @@
-html, body, input {
+html, body, input, * {
     font-family: 'Roboto', sans-serif;
     font-weight: 200;
 }
