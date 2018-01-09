@@ -8,7 +8,8 @@
 	"main": "index.js",
 	"scripts": {
 		"build": "node ./scripts/build",
-		"serve": "serve ./public"
+		"serve": "serve ./public",
+		"setup": "./package.json"
 	},
 	"devDependencies": {
     		"ejs": "^2.5.7",
