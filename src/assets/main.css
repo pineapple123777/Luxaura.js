@@ -15,6 +15,7 @@ html, body, input, * {
   width: 256px;
   width: 16rem;
   font-weight: 500;
+  z-index: 20;
 }
 
 hr {
@@ -27,6 +28,7 @@ hr {
     border-radius: 35px 0 0 0;
     padding-left: 15px;
     padding-top: 20px;
+    z-index: 21;
     -webkit-box-shadow: -5px -5px 15px -5px rgba(0,0,0,0.5);
     -moz-box-shadow: -5px -5px 15px -5px rgba(0,0,0,0.5);
     box-shadow: -5px -5px 15px -5px rgba(0,0,0,0.5);
