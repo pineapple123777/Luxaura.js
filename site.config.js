@@ -1,6 +1,6 @@
 module.exports = {
   site: {
-    title: 'Wikify',
-    description: 'Static wiki generator'
+    title: 'Vanillify',
+    description: 'A vanilla static site generator'
   }
 }
