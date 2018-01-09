@@ -1,2 +1,2 @@
-# Wikify
-A static wiki generator built with Node.js, EJS, YAML (front matter), and marked (to render markdown files). {{WORK IN PROGRESS}}
+# Vanillify
+A "build-it-yourself" static site generator. Add your pages, CSS, etc. yourself!
