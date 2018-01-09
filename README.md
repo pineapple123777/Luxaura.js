@@ -1,4 +1,6 @@
 # Vanillify
+[Releases](https://github.com/TristianK3604/vanillify/releases)
+
 A "build-it-yourself" static site generator. Add your pages, CSS, etc. yourself!
 
 # Installation
