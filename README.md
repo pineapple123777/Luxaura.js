@@ -1,5 +1,6 @@
 # Vanillify
-[Releases](https://github.com/TristianK3604/vanillify/releases)
+
+[![Build Status](https://travis-ci.org/TristianK3604/vanillify.svg?branch=master)](https://travis-ci.org/TristianK3604/vanillify)
 
 A "build-it-yourself" static site generator. Add your pages, CSS, etc. yourself!
 
