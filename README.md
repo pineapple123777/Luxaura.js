@@ -1,6 +1,6 @@
 # Vanillify
 
-[![Build Status](https://travis-ci.org/TristianK3604/vanillify.svg?branch=master)](https://travis-ci.org/TristianK3604/vanillify)
+[![Build Status](https://travis-ci.org/TristianK3604/vanillify.svg?branch=master)](https://travis-ci.org/TristianK3604/vanillify) [![Releases](https://img.shields.io/github/release/TristianK3604/vanillify/all.svg)](https://github.com/TristianK3604/vanillify/releases)
 
 A "build-it-yourself" static site generator. Add your pages, CSS, etc. yourself!
 
