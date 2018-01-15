@@ -1,6 +1,6 @@
 # Vanillify
 
-[![Build Status](https://travis-ci.org/TristianK3604/vanillify.svg?branch=master)](https://travis-ci.org/TristianK3604/vanillify) [![Releases](https://img.shields.io/github/release/TristianK3604/vanillify/all.svg)](https://github.com/TristianK3604/vanillify/releases) [![Join the chat at https://gitter.im/vanillify/vanillify](https://badges.gitter.im/vanillify/vanillify.svg)](https://gitter.im/vanillify/vanillify?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/TristianK3604/vanillify.svg?branch=master)](https://travis-ci.org/TristianK3604/vanillify) [![Releases](https://img.shields.io/github/release/TristianK3604/vanillify/all.svg)](https://github.com/TristianK3604/vanillify/releases)
 
 A "build-it-yourself" static site generator. Add your pages, CSS, etc. yourself!
 
