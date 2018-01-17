@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"description": "A vanilla static site generator",
 	"repository": "TristianK3604/vanillify",
-	"license": "The Unlicense",
+	"license": "Unlicense",
 	"author": "Tristian Kelly",
 	"main": "index.js",
 	"scripts": {
