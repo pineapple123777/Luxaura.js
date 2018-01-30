@@ -14,8 +14,9 @@ const distPath = './public'
 // clear destination folder
 fse.emptyDirSync(distPath)
 
-// copy assets folder
+// copy assets and do not process folders
 fse.copy(`${srcPath}/assets`, `${distPath}/assets`)
+fse.copy(`${srcPath}/dn-process`, `${distPath}`)
 
 // read pages
 globP('**/*.@(md|ejs|html)', { cwd: `${srcPath}/pages` })
