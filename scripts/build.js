@@ -5,8 +5,7 @@ const { promisify } = require('util')
 const marked = require('marked')
 const frontMatter = require('front-matter')
 const globP = promisify(require('glob'))
-// const config = require('../site.config')
-const config = require('../config.json')
+const config = require('../site.config')
 
 const ejsRenderFile = promisify(ejs.renderFile)
 const distPath = './site'
