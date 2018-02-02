@@ -13,7 +13,7 @@ const distPath = './site'
 // clear destination folder
 fse.emptyDirSync(distPath)
 
-// copy assets and do not process folders
+// copy assets folder
 fse.copy(`assets`, `${distPath}/assets`)
 
 // read pages
