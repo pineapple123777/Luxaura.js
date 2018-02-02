@@ -50,7 +50,7 @@ globP('**/*.@(md|ejs|html)', { cwd: `content` })
           // render layout with page contents
           const layout = pageData.attributes.layout || 'default'
 
-          return ejsRenderFile(`layouts/${layout}.ejs`, Object.assign({}, templateConfig, { body: pageContent }))
+          return ejsRenderFile(`views/${layout}.ejs`, Object.assign({}, templateConfig, { body: pageContent }))
         })
         .then((str) => {
           // save the html file
