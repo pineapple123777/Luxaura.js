@@ -14,7 +14,7 @@ const distPath = './site'
 fse.emptyDirSync(distPath)
 
 // copy assets folder
-fse.copy(`assets`, `${distPath}/assets`)
+fse.copy(`static`, `${distPath}`)
 
 // read pages
 globP('**/*.@(md|ejs|html)', { cwd: `content` })
