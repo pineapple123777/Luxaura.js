@@ -8,18 +8,16 @@ const globP = promisify(require('glob'))
 const config = require('../site.config')
 
 const ejsRenderFile = promisify(ejs.renderFile)
-const srcPath = './src'
-const distPath = './public'
+const distPath = './site'
 
 // clear destination folder
 fse.emptyDirSync(distPath)
 
 // copy assets and do not process folders
-fse.copy(`${srcPath}/assets`, `${distPath}/assets`)
-fse.copy(`${srcPath}/dn-process`, `${distPath}`)
+fse.copy(`assets`, `${distPath}/assets`)
 
 // read pages
-globP('**/*.@(md|ejs|html)', { cwd: `${srcPath}/pages` })
+globP('**/*.@(md|ejs|html)', { cwd: `pages` })
   .then((files) => {
     files.forEach((file) => {
       const fileData = path.parse(file)
@@ -29,7 +27,7 @@ globP('**/*.@(md|ejs|html)', { cwd: `${srcPath}/pages` })
       fse.mkdirs(destPath)
         .then(() => {
           // read page file
-          return fse.readFile(`${srcPath}/pages/${file}`, 'utf-8')
+          return fse.readFile(`pages/${file}`, 'utf-8')
         })
         .then((data) => {
           // render page
@@ -52,7 +50,7 @@ globP('**/*.@(md|ejs|html)', { cwd: `${srcPath}/pages` })
           // render layout with page contents
           const layout = pageData.attributes.layout || 'default'
 
-          return ejsRenderFile(`${srcPath}/layouts/${layout}.ejs`, Object.assign({}, templateConfig, { body: pageContent }))
+          return ejsRenderFile(`layouts/${layout}.ejs`, Object.assign({}, templateConfig, { body: pageContent }))
         })
         .then((str) => {
           // save the html file
