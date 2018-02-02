@@ -27,7 +27,7 @@ globP('**/*.@(md|ejs|html)', { cwd: `pages` })
       fse.mkdirs(destPath)
         .then(() => {
           // read page file
-          return fse.readFile(`pages/${file}`, 'utf-8')
+          return fse.readFile(`content/${file}`, 'utf-8')
         })
         .then((data) => {
           // render page
