@@ -1,8 +1,8 @@
 {
-	"name": "Vanillify",
+	"name": "Luxaura.js",
 	"version": "0.0.1",
-	"description": "A vanilla static site generator",
-	"repository": "TristianK3604/vanillify",
+	"description": "A simple static site generator",
+	"repository": "TristianK3604/Luxaura.js",
 	"license": "Unlicense",
 	"author": "Tristian Kelly",
 	"main": "index.js",
