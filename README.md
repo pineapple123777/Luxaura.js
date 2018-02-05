@@ -1,14 +1,14 @@
-# Vanillify
+# Luxaura.js
 
-[![Build Status](https://travis-ci.org/TristianK3604/vanillify.svg?branch=master)](https://travis-ci.org/TristianK3604/vanillify) [![Releases](https://img.shields.io/github/release/TristianK3604/vanillify/all.svg)](https://github.com/TristianK3604/vanillify/releases)
+[![Build Status](https://travis-ci.org/TristianK3604/Luxaura.js.svg?branch=master)](https://travis-ci.org/TristianK3604/Luxaura.js) [![Releases](https://img.shields.io/github/release/TristianK3604/Luxaura.js/all.svg)](https://github.com/TristianK3604/Luxaura.js/releases)
 
-A "build-it-yourself" static site generator. Add your pages, CSS, etc. yourself!
+A simple static site generator.
 
 # Installation
 
 ## Quick Start
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/TristianK3604/vanillify)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/TristianK3604/Luxaura.js)
 
 ## Advanced Installation
 
@@ -20,11 +20,11 @@ $ npm install
 $ npm run build
 ````
 
-If your computer (or whatever you used to build Vanillify) is setup to serve pages, just upload the build to your public folder and you're done!
+If your computer is setup to serve pages, just upload the build (located in the `site` folder) to your public folder and you're done!
 
 **If not:**
 
 ````shell
 $ npm run serve
 ````
-Your Vanillify site is available at http://localhost:5000.
+Your Luxaura.js site is available at http://localhost:5000.
