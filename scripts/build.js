@@ -1,6 +1,7 @@
 const fse = require('fs-extra')
 const path = require('path')
 const ejs = require('ejs')
+const Prism = require('node-prismjs');
 const { promisify } = require('util')
 const marked = require('marked')
 const frontMatter = require('front-matter')
@@ -13,7 +14,13 @@ const distPath = './site'
 // clear destination folder
 fse.emptyDirSync(distPath)
 
-// copy assets folder
+// syntax highlighting
+function highlight(lang, sourceCode) {
+  const language = Prism.languages[lang] || Prism.languages.autoit;
+  return Prism.highlight(sourceCode, language);
+}
+
+// copy static folder
 fse.copy(`static`, `${distPath}`)
 
 // read pages
