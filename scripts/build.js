@@ -1,7 +1,6 @@
 const fse = require('fs-extra')
 const path = require('path')
 const ejs = require('ejs')
-const Prism = require('node-prismjs');
 const { promisify } = require('util')
 const marked = require('marked')
 const frontMatter = require('front-matter')
@@ -39,24 +38,12 @@ globP('**/*.@(md|ejs|html)', { cwd: `content` })
           // generate page content according to file type
           switch (fileData.ext) {
             case '.md':
-              function highlight(lang, sourceCode) {
-              const language = Prism.languages[lang] || Prism.languages.autoit;
-              return Prism.highlight(sourceCode, language);
-              }
               pageContent = marked(pageData.body)
               break
             case '.ejs':
-              function highlight(lang, sourceCode) {
-              const language = Prism.languages[lang] || Prism.languages.autoit;
-              return Prism.highlight(sourceCode, language);
-              }
               pageContent = ejs.render(pageData.body, templateConfig)
               break
             default:
-              function highlight(lang, sourceCode) {
-              const language = Prism.languages[lang] || Prism.languages.autoit;
-              return Prism.highlight(sourceCode, language);
-              }
               pageContent = pageData.body
           }
 
