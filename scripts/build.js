@@ -14,12 +14,6 @@ const distPath = './site'
 // clear destination folder
 fse.emptyDirSync(distPath)
 
-// syntax highlighting
-function highlight(lang, sourceCode) {
-  const language = Prism.languages[lang] || Prism.languages.autoit;
-  return Prism.highlight(sourceCode, language);
-}
-
 // copy static folder
 fse.copy(`static`, `${distPath}`)
 
@@ -45,12 +39,24 @@ globP('**/*.@(md|ejs|html)', { cwd: `content` })
           // generate page content according to file type
           switch (fileData.ext) {
             case '.md':
+              function highlight(lang, sourceCode) {
+              const language = Prism.languages[lang] || Prism.languages.autoit;
+              return Prism.highlight(sourceCode, language);
+              }
               pageContent = marked(pageData.body)
               break
             case '.ejs':
+              function highlight(lang, sourceCode) {
+              const language = Prism.languages[lang] || Prism.languages.autoit;
+              return Prism.highlight(sourceCode, language);
+              }
               pageContent = ejs.render(pageData.body, templateConfig)
               break
             default:
+              function highlight(lang, sourceCode) {
+              const language = Prism.languages[lang] || Prism.languages.autoit;
+              return Prism.highlight(sourceCode, language);
+              }
               pageContent = pageData.body
           }
 
