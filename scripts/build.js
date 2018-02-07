@@ -45,7 +45,7 @@ globP('**/*.@(md|ejs|html)', { cwd: `content` })
               pageContent = ejs.render(pug.render(pageData.body), templateConfig)
               break
             default:
-              pageContent = pug.render(templateConfig, ejs.render(pageData.body))
+              pageContent = pug.render(ejs.render(pageData.body, templateConfig))
           }
 
           // render layout with page contents
