@@ -3,7 +3,7 @@ const path = require('path')
 const ejs = require('ejs')
 const pug = require('pug');
 const { promisify } = require('util')
-const marked = require('marked')
+const markdownIt = require('markdown-it')
 const frontMatter = require('front-matter')
 const globP = promisify(require('glob'))
 const config = require('../site.config')
@@ -42,7 +42,7 @@ globP('**/*.@(md|html)', { cwd: `content` })
           // generate page content according to file type
           switch (fileData.ext) {
             case '.md':
-              pageContent = marked(ejs.render(pageData.body, templateConfig))
+              pageContent = markdownIt.render(ejs.render(pageData.body, templateConfig))
               break
             default:
               pageContent = pug.render(ejs.render(pageData.body, templateConfig), templateConfig)
