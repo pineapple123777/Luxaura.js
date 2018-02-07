@@ -20,7 +20,7 @@ const frontMatter = require('front-matter')
 const globP = promisify(require('glob'))
 const config = require('../site.config')
 
-const pugRenderFile = promisify(pug.renderFile)
+const pugPRender = promisify(pug.render)
 const ejsRenderFile = promisify(ejs.renderFile)
 const distPath = './site'
 
@@ -64,7 +64,7 @@ globP('**.@(md|html)', { cwd: `content` })
           // render layout with page contents
           const layout = pageData.attributes.layout || 'default'
 
-          return pugRenderFile(ejsRenderFile(`views/${layout}.html`, Object.assign({}, templateConfig, { content: pageContent })))
+          return pugPRender(ejsRenderFile(`views/${layout}.html`, Object.assign({}, templateConfig, { content: pageContent })))
         })
         .then((str) => {
           // save the html file
