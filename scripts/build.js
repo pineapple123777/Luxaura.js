@@ -96,7 +96,7 @@ const frontMatter = require('front-matter')
 const globP = promisify(require('glob'))
 const config = require('../site.config')
 
-const liquidRenderFile = promisify(liquid.renderFile)
+const liquidRenderFile = liquid.renderFile
 const distPath = './site'
 
 // clear destination folder
