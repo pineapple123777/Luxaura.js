@@ -11,6 +11,9 @@ const config = require('../site.config')
 const ejsRenderFile = promisify(ejs.renderFile)
 const distPath = './site'
 
+// set ejs delimiter
+ejs.delimiter = ''';
+
 // clear destination folder
 fse.emptyDirSync(distPath)
 
