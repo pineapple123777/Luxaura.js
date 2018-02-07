@@ -74,8 +74,8 @@ globP('**/*.@(md|html)', { cwd: `content` })
   })
   .catch((err) => { console.error(err) })
 
-/*
-const fse = require('fs-extra')
+
+/*const fse = require('fs-extra')
 const path = require('path')
 const ejs = require('ejs')
 const pug = require('pug')
@@ -110,7 +110,7 @@ fse.emptyDirSync(distPath)
 fse.copy(`static`, `${distPath}`)
 
 // read pages
-globP('**/*.@(md|html)', { cwd: `content` })
+globP('**.@(md|html)', { cwd: `content` })
   .then((files) => {
     files.forEach((file) => {
       const fileData = path.parse(file)
