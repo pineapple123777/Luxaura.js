@@ -1,6 +1,7 @@
 const fse = require('fs-extra')
 const path = require('path')
 const ejs = require('ejs')
+const pug = require('pug');
 const { promisify } = require('util')
 const marked = require('marked')
 const frontMatter = require('front-matter')
@@ -38,13 +39,13 @@ globP('**/*.@(md|ejs|html)', { cwd: `content` })
           // generate page content according to file type
           switch (fileData.ext) {
             case '.md':
-              pageContent = marked(pageData.body)
+              pageContent = ejs.render(marked(pageData.body), templateConfig)
               break
             case '.ejs':
-              pageContent = ejs.render(pageData.body, templateConfig)
+              pageContent = ejs.render(pug.render(pageData.body, merge(options, locals)), templateConfig)
               break
             default:
-              pageContent = pageData.body
+              pageContent = ejs.render(pug.render(pageData.body, merge(options, locals)), templateConfig);
           }
 
           // render layout with page contents
