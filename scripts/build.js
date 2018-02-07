@@ -21,7 +21,7 @@ fse.emptyDirSync(distPath)
 fse.copy(`static`, `${distPath}`)
 
 // read pages
-globP('**/*.@(md|ejs|html)', { cwd: `content` })
+globP('**/*.@(md|html)', { cwd: `content` })
   .then((files) => {
     files.forEach((file) => {
       const fileData = path.parse(file)
@@ -42,10 +42,7 @@ globP('**/*.@(md|ejs|html)', { cwd: `content` })
           // generate page content according to file type
           switch (fileData.ext) {
             case '.md':
-              pageContent = ejs.render(marked(pageData.body), templateConfig)
-              break
-            case '.ejs':
-              pageContent = ejs.render(pug.render(pageData.body), templateConfig)
+              pageContent = marked(ejs.render(pageData.body, templateConfig))
               break
             default:
               pageContent = pug.render(ejs.render(pageData.body, templateConfig), templateConfig)
