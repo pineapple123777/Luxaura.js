@@ -42,7 +42,7 @@ globP('**/*.@(md|ejs|html)', { cwd: `content` })
               pageContent = ejs.render(marked(pageData.body), templateConfig)
               break
             case '.ejs':
-              pageContent = ejs.render(pug.render(pageData.body), templateConfig))
+              pageContent = ejs.render(pug.render(pageData.body), templateConfig)
               break
             default:
               pageContent = ejs.render(pug.render(pageData.body), templateConfig)
