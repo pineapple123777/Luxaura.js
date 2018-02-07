@@ -3,5 +3,8 @@ title: pug
 ---
 
 h1 <%= page.title %>
-  p.
-    hello!
+  
+  if page.title
+    <%= page.title %>
+  else
+    <%= site.title %>
