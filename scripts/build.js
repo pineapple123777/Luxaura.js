@@ -78,7 +78,8 @@ globP('**.@(md|html)', { cwd: `content` })
 const fse = require('fs-extra')
 const path = require('path')
 const pug = require('pug')
-const liquid = require('liquidjs')
+const templating = require('liquidjs')
+const liquid = templating();
 const hljs = require('highlight.js')
 const { promisify } = require('util')
 const markdownIt = require('markdown-it')({
