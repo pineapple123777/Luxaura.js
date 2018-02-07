@@ -127,10 +127,10 @@ globP('**/*.@(md|html)', { cwd: `content` })
           // generate page content according to file type
           switch (fileData.ext) {
             case '.md':
-              pageContent = markdownIt.render(liquid.render(pageData.body, templateConfig))
+              pageContent = markdownIt.render(liquid.parseAndRender(pageData.body, templateConfig))
               break
             default:
-              pageContent = pug.render(liquid.render(pageData.body, templateConfig), templateConfig)
+              pageContent = pug.render(liquid.parseAndRender(pageData.body, templateConfig), templateConfig)
           }
 
           // render layout with page contents
