@@ -18,6 +18,7 @@
     		"marked": "^0.3.12",
     		"serve": "^6.4.8",
     		"standard": "^10.0.3",
-		"node-prismjs": "^0.1.1"
+		"node-prismjs": "^0.1.1",
+		"pug": "^2.0.0-rc.4"
 	}
 }
