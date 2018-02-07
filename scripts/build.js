@@ -42,7 +42,7 @@ globP('**/*.@(md|html)', { cwd: `content` })
           // generate page content according to file type
           switch (fileData.ext) {
             case '.md':
-              pageContent = ejs.render(marked(pageData.body), templateConfig)
+              pageContent = marked(ejs.render(pageData.body, templateConfig))
               break
             default:
               pageContent = pug.render(ejs.render(pageData.body, templateConfig), templateConfig)
