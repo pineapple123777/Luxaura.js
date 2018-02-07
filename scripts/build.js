@@ -1,4 +1,4 @@
-/*const fse = require('fs-extra')
+const fse = require('fs-extra')
 const path = require('path')
 const ejs = require('ejs')
 const pug = require('pug')
@@ -54,7 +54,7 @@ globP('**.@(md|html)', { cwd: `content` })
           // generate page content according to file type
           switch (fileData.ext) {
             case '.md':
-              pageContent = markdownIt.render(ejs.render(pageData.body, templateConfig))
+              pageContent = markdownIt.render(pageData.body)
               break
             default:
               pageContent = pug.render(ejs.render(pageData.body, templateConfig), templateConfig)
@@ -63,81 +63,7 @@ globP('**.@(md|html)', { cwd: `content` })
           // render layout with page contents
           const layout = pageData.attributes.layout || 'default'
 
-          return ejsRenderFile(`views/${layout}.ejs`, Object.assign({}, templateConfig, { content: pageContent }))
-        })
-        .then((str) => {
-          // save the html file
-          fse.writeFile(`${destPath}/${fileData.name}.html`, str)
-      })
-        .catch((err) => { console.error(err) })
-    })
-  })
-  .catch((err) => { console.error(err) })
-*/
-
-const fse = require('fs-extra')
-const path = require('path')
-const pug = require('pug')
-const templating = require('liquidjs')
-const liquid = templating();
-const hljs = require('highlight.js')
-const { promisify } = require('util')
-const markdownIt = require('markdown-it')({
-  highlight: function (str, lang) {
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return hljs.highlight(lang, str).value;
-      } catch (__) {}
-    }
- 
-    return '';
-  }
-});
-const frontMatter = require('front-matter')
-const globP = promisify(require('glob'))
-const config = require('../site.config')
-
-const liquidRenderFile = promisify(liquid.renderFile)
-const distPath = './site'
-
-// clear destination folder
-fse.emptyDirSync(distPath)
-
-// copy static folder
-fse.copy(`static`, `${distPath}`)
-
-// read pages
-globP('**/*.@(md|html)', { cwd: `content` })
-  .then((files) => {
-    files.forEach((file) => {
-      const fileData = path.parse(file)
-      const destPath = path.join(distPath, fileData.dir)
-
-      // create destination directory
-      fse.mkdirs(destPath)
-        .then(() => {
-          // read page file
-          return fse.readFile(`content/${file}`, 'utf-8')
-        })
-        .then((data) => {
-          // render page
-          const pageData = frontMatter(data)
-          const templateConfig = Object.assign({}, config, { page: pageData.attributes })
-          let pageContent
-
-          // generate page content according to file type
-          switch (fileData.ext) {
-            case '.md':
-              pageContent = markdownIt.render(liquid.parseAndRender(pageData.body, templateConfig))
-              break
-            default:
-              pageContent = liquid.parseAndRender(pageData.body, templateConfig)
-          }
-
-          // render layout with page contents
-          const layout = pageData.attributes.layout || 'default'
-
-          return liquidRenderFile(`views/${layout}.html`, Object.assign({}, templateConfig, { content: pageContent }))
+          return ejsRenderFile(`views/${layout}.html`, Object.assign({}, templateConfig, { content: pageContent }))
         })
         .then((str) => {
           // save the html file
