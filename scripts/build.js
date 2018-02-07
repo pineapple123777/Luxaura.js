@@ -62,7 +62,7 @@ globP('**.@(md|html)', { cwd: `content` })
           // render layout with page contents
           const layout = pageData.attributes.layout || 'default'
 
-          return ejsRenderFile(pug.render(`views/${layout}.html`, Object.assign({}, templateConfig, { content: pageContent })))
+          return pug.render(ejsRenderFile(`views/${layout}.html`, Object.assign({}, templateConfig, { content: pageContent })))
         })
         .then((str) => {
           // save the html file
