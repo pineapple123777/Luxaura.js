@@ -97,7 +97,7 @@ const frontMatter = require('front-matter')
 const globP = promisify(require('glob'))
 const config = require('../site.config')
 
-const liquidRenderFile = liquid.renderFile
+const liquidRenderFile = promisify(liquid.renderFile)
 const distPath = './site'
 
 // clear destination folder
@@ -131,7 +131,7 @@ globP('**/*.@(md|html)', { cwd: `content` })
               pageContent = markdownIt.render(liquid.parseAndRender(pageData.body, templateConfig))
               break
             default:
-              pageContent = pug.render(liquid.parseAndRender(pageData.body, templateConfig), templateConfig)
+              pageContent = liquid.parseAndRender(pageData.body, templateConfig)
           }
 
           // render layout with page contents
