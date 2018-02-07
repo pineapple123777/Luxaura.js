@@ -1,9 +1,20 @@
 const fse = require('fs-extra')
 const path = require('path')
 const ejs = require('ejs')
-const pug = require('pug');
+const pug = require('pug')
+const hljs = require('highlight.js');
 const { promisify } = require('util')
-const markdownIt = require('markdown-it')();
+const markdownIt = require('markdown-it')({
+  highlight: function (str, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return hljs.highlight(lang, str).value;
+      } catch (__) {}
+    }
+ 
+    return '';
+  }
+});
 const frontMatter = require('front-matter')
 const globP = promisify(require('glob'))
 const config = require('../site.config')
