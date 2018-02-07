@@ -2,7 +2,6 @@ const fse = require('fs-extra')
 const path = require('path')
 const ejs = require('ejs')
 const pug = require('pug')
-const liquid = require('liquidjs')
 const hljs = require('highlight.js')
 const { promisify } = require('util')
 const markdownIt = require('markdown-it')({
@@ -20,7 +19,7 @@ const frontMatter = require('front-matter')
 const globP = promisify(require('glob'))
 const config = require('../site.config')
 
-const ejsRenderFile = pug.render(promisify(ejs.renderFile))
+const ejsRenderFile = pug.render(ejs.renderFile)
 const distPath = './site'
 
 // set ejs delimiter
