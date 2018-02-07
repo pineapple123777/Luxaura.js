@@ -66,7 +66,7 @@ globP('**.@(md|html)', { cwd: `content` })
         })
         .then((str) => {
           // save the html file
-          fse.writeFile(pug.render(`${destPath}/${fileData.name}.html`, str))
+          pug.render(fse.writeFile(`${destPath}/${fileData.name}.html`, str))
       })
         .catch((err) => { console.error(err) })
     })
