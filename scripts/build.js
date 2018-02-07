@@ -99,9 +99,6 @@ const config = require('../site.config')
 const liquidRenderFile = promisify(liquid.renderFile)
 const distPath = './site'
 
-// set ejs delimiter
-ejs.delimiter = '?';
-
 // clear destination folder
 fse.emptyDirSync(distPath)
 
