@@ -1,8 +1,10 @@
-doctype html
-html
-  head
-    include ../partials/head.html
-  body
-    include ../partials/header.html
-    != content
-    include ../partials/foot.html
+<!DOCTYPE html>
+<html>
+<head>
+<?- include('../partials/head.html') ?>
+<body>
+<?- include('../partials/header.html') ?>
+<?- content ?>
+<?- include ../partials/foot.html ?>
+</body>
+  </html>
