@@ -28,9 +28,3 @@ JavaScript
 var abc = "xyz"
 console.log(abc);
 ````
-Let's throw in some Pug:
-````jade
-h1 Hello, world!
-p.
-  This is a paragraph!
-````
