@@ -29,7 +29,7 @@ var abc = "xyz"
 console.log(abc);
 ````
 Let's throw in some Pug:
-````pug
+````jade
 h1 Hello, world!
 p.
   This is a paragraph!
