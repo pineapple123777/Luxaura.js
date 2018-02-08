@@ -19,7 +19,6 @@ const frontMatter = require('front-matter')
 const globP = promisify(require('glob'))
 const config = require('../site.config')
 
-let ejsRenderMD = ejs.render(pageData.body, templateConfig)
 const ejsRenderFile = promisify(ejs.renderFile)
 const distPath = './site'
 
@@ -48,6 +47,7 @@ globP('**.@(md|markdown|html|pug)', { cwd: `content` })
         .then((data) => {
           // render page
           const pageData = frontMatter(data)
+          let ejsRenderMD = ejs.render(pageData.body, templateConfig)
           const templateConfig = Object.assign({}, config, { page: pageData.attributes })
           let pageContent
 
