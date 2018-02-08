@@ -1,7 +1,11 @@
 ````html
+<!DOCTYPE html>
 <html>
 <head>
-  testing
-  </html>
-  ````
-<%= site.title %>
+<title>testing</title>
+</head>
+<body>
+<h1>Hello, world!</h1>
+</body>
+</html>
+````
