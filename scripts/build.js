@@ -19,7 +19,7 @@ const frontMatter = require('front-matter')
 const globP = promisify(require('glob'))
 const config = require('../site.config')
 
-const ejsRenderFile = promisify(ejs.renderFile)
+const ejsRenderFile = promisify(pug.renderFile)
 const distPath = './site'
 
 // set ejs delimiter
