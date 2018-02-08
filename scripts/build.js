@@ -1,9 +1,9 @@
 const fse = require('fs-extra')
 const path = require('path')
 const ejs = require('ejs')
-const pug = require('pug')
 const hljs = require('highlight.js')
 const { promisify } = require('util')
+const pug = require('pug')
 const markdownIt = require('markdown-it')({
   highlight: function (str, lang) {
     if (lang && hljs.getLanguage(lang)) {
@@ -59,7 +59,7 @@ globP('**.@(md|markdown|html|pug)', { cwd: `content` })
               pageContent = markdownIt.render(pageData.body)
               break
             case '.pug':
-              pageContent = pug.render(pageData.body, templateConfig)
+              pageContent = pug.render(ejs.render(pageData.body, templateConfig), templateConfig)
             default:
               pageContent = ejs.render(pageData.body, templateConfig)
           }
