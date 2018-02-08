@@ -1,4 +1,6 @@
-html
+Luxaura.js comes with syntax highlighting for Markdown files. Here are some examples:
+
+HTML
 ````html
 <!DOCTYPE html>
 <html>
@@ -10,18 +12,18 @@ html
 </body>
 </html>
 ````
-markdown
+Markdown
 ````markdown
 # hello, there!
 **bold**
 *italic*
 ## h2
 ````
-yaml
+YAML
 ````yaml
 title: your awesome title
 ````
-javascript
+JavaScript
 ````javascript
 var abc = "xyz"
 console.log(abc);
