@@ -47,8 +47,8 @@ globP('**.@(md|markdown|html|pug)', { cwd: `content` })
         .then((data) => {
           // render page
           const pageData = frontMatter(data)
-          let ejsRenderMD = ejs.render(pageData.body, templateConfig)
           const templateConfig = Object.assign({}, config, { page: pageData.attributes })
+          let ejsRenderMD = ejs.render(pageData.body, templateConfig)
           let pageContent
 
           // generate page content according to file type
