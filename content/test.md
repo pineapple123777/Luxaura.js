@@ -4,3 +4,4 @@
   testing
   </html>
   ````
+<%= site.title %>
