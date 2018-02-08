@@ -48,19 +48,18 @@ globP('**.@(md|markdown|html|pug)', { cwd: `content` })
           // render page
           const pageData = frontMatter(data)
           const templateConfig = Object.assign({}, config, { page: pageData.attributes })
-          let ejsRenderMD = ejs.render(pageData.body, templateConfig)
           let pageContent
 
           // generate page content according to file type
           switch (fileData.ext) {
             case '.md':
-              pageContent = markdownIt.render(ejsRenderMD)
+              pageContent = markdownIt.render(pageData.body)
               break
             case '.markdown':
-              pageContent = markdownIt.render(ejsRenderMD)
+              pageContent = markdownIt.render(pageData.body)
               break
             case '.pug':
-              pageContent = pug.render(ejs.render(pageData.body, templateConfig), templateConfig)
+              pageContent = pug.render(pageData.body, templateConfig)
             default:
               pageContent = ejs.render(pageData.body, templateConfig)
           }
