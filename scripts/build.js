@@ -32,7 +32,7 @@ fse.emptyDirSync(distPath)
 fse.copy(`static`, `${distPath}`)
 
 // read pages
-globP('**.@(md|markdown|html|pug)', { cwd: `content` })
+globP('**/*.@(md|markdown|html|pug)', { cwd: `content` })
   .then((files) => {
     files.forEach((file) => {
       const fileData = path.parse(file)
