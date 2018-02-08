@@ -60,6 +60,7 @@ globP('**/*.@(md|markdown|html|pug)', { cwd: `content` })
               break
             case '.pug':
               pageContent = pug.render(ejs.render(pageData.body, templateConfig), templateConfig)
+              break
             default:
               pageContent = ejs.render(pageData.body, templateConfig)
           }
