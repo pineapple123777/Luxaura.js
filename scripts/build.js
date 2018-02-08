@@ -19,6 +19,7 @@ const frontMatter = require('front-matter')
 const globP = promisify(require('glob'))
 const config = require('../site.config')
 
+let ejsRenderMD = ejs.render(pageData.body, templateConfig)
 const ejsRenderFile = promisify(ejs.renderFile)
 const distPath = './site'
 
@@ -53,11 +54,9 @@ globP('**.@(md|markdown|html|pug)', { cwd: `content` })
           // generate page content according to file type
           switch (fileData.ext) {
             case '.md':
-              let ejsRenderMD = ejs.render(pageData.body, templateConfig)
               pageContent = markdownIt.render(ejsRenderMD)
               break
             case '.markdown':
-              let ejsRenderMD = ejs.render(pageData.body, templateConfig)
               pageContent = markdownIt.render(ejsRenderMD)
               break
             case '.pug':
