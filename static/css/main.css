@@ -24,6 +24,12 @@ body,input {
     text-align: center;
 }
 
+.jumbotron-fluid {
+    background: #4ECDC4;
+    background: -webkit-linear-gradient(to right, #556270, #4ECDC4);
+    background: linear-gradient(to right, #556270, #4ECDC4);
+}
+
 code {
   padding: .2rem .5rem;
   margin: 0 .2rem;
