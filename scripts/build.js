@@ -19,7 +19,7 @@ const markdownIt = require('markdown-it')({
 const frontMatter = require('front-matter')
 const globP = promisify(require('glob'))
 const configFile = require('../luxaura.yml')
-const config = yaml.safeLoad(configFile);
+const config = yaml.safeLoad("site:\n" + configFile);
 
 const ejsRenderFile = promisify(ejs.renderFile)
 const distPath = './site'
@@ -49,7 +49,7 @@ globP('**/*.@(md|markdown|html|pug)', { cwd: `content` })
         .then((data) => {
           // render page
           const pageData = frontMatter(data)
-          const templateConfig = Object.assign({}, "{\r\n   \"site\": \n" + config + "\n}", { page: pageData.attributes })
+          const templateConfig = Object.assign({}, config, { page: pageData.attributes })
           let pageContent
 
           // generate page content according to file type
