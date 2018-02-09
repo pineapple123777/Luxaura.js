@@ -1,25 +1,38 @@
 const fse = require('fs-extra')
 const path = require('path')
 const ejs = require('ejs')
+const hljs = require('highlight.js')
 const { promisify } = require('util')
-const marked = require('marked')
+const pug = require('pug')
+const markdownIt = require('markdown-it')({
+  highlight: function (str, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return hljs.highlight(lang, str).value;
+      } catch (__) {}
+    }
+ 
+    return '';
+  }
+});
 const frontMatter = require('front-matter')
 const globP = promisify(require('glob'))
 const config = require('../site.config')
 
 const ejsRenderFile = promisify(ejs.renderFile)
-const srcPath = './src'
-const distPath = './public'
+const distPath = './site'
+
+// set ejs delimiter
+ejs.delimiter = '?';
 
 // clear destination folder
 fse.emptyDirSync(distPath)
 
-// copy assets and do not process folders
-fse.copy(`${srcPath}/assets`, `${distPath}/assets`)
-fse.copy(`${srcPath}/dn-process`, `${distPath}`)
+// copy static folder
+fse.copy(`static`, `${distPath}`)
 
 // read pages
-globP('**/*.@(md|ejs|html)', { cwd: `${srcPath}/pages` })
+globP('**/*.@(md|markdown|html|pug)', { cwd: `content` })
   .then((files) => {
     files.forEach((file) => {
       const fileData = path.parse(file)
@@ -29,7 +42,7 @@ globP('**/*.@(md|ejs|html)', { cwd: `${srcPath}/pages` })
       fse.mkdirs(destPath)
         .then(() => {
           // read page file
-          return fse.readFile(`${srcPath}/pages/${file}`, 'utf-8')
+          return fse.readFile(`content/${file}`, 'utf-8')
         })
         .then((data) => {
           // render page
@@ -40,24 +53,27 @@ globP('**/*.@(md|ejs|html)', { cwd: `${srcPath}/pages` })
           // generate page content according to file type
           switch (fileData.ext) {
             case '.md':
-              pageContent = marked(pageData.body)
+              pageContent = markdownIt.render(pageData.body)
               break
-            case '.ejs':
-              pageContent = ejs.render(pageData.body, templateConfig)
+            case '.markdown':
+              pageContent = markdownIt.render(pageData.body)
+              break
+            case '.pug':
+              pageContent = pug.render(ejs.render(pageData.body, templateConfig), templateConfig)
               break
             default:
-              pageContent = pageData.body
+              pageContent = ejs.render(pageData.body, templateConfig)
           }
 
           // render layout with page contents
           const layout = pageData.attributes.layout || 'default'
 
-          return ejsRenderFile(`${srcPath}/layouts/${layout}.ejs`, Object.assign({}, templateConfig, { body: pageContent }))
+          return ejsRenderFile(`views/${layout}.html`, Object.assign({}, templateConfig, { content: pageContent }))
         })
         .then((str) => {
           // save the html file
           fse.writeFile(`${destPath}/${fileData.name}.html`, str)
-        })
+      })
         .catch((err) => { console.error(err) })
     })
   })
