@@ -1,5 +1,4 @@
 const fse = require('fs-extra')
-const yaml = require('js-yaml')
 const path = require('path')
 const ejs = require('ejs')
 const hljs = require('highlight.js')
@@ -18,8 +17,7 @@ const markdownIt = require('markdown-it')({
 });
 const frontMatter = require('front-matter')
 const globP = promisify(require('glob'))
-const configFile = require('../luxaura.yml')
-const config = yaml.safeLoad("site:\r\n\t" + configFile);
+const config = require('../site.config')
 
 const ejsRenderFile = promisify(ejs.renderFile)
 const distPath = './site'
