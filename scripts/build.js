@@ -18,8 +18,8 @@ const markdownIt = require('markdown-it')({
 });
 const frontMatter = require('front-matter')
 const globP = promisify(require('glob'))
-const configFile = "site:\n\t" + require('../luxaura.yml')
-const config = yaml.safeLoad(configFile);
+const configFile = require('../luxaura.yml')
+const config = yaml.safeLoad("site:\r\n\t" + configFile);
 
 const ejsRenderFile = promisify(ejs.renderFile)
 const distPath = './site'
