@@ -8,7 +8,7 @@ A simple static site generator.
 
 ## Quick Start
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/TristianK3604/Luxaura.js)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/luxaurajs/Luxaura.js)
 
 ## Advanced Installation
 
