@@ -1,4 +1,5 @@
 const fse = require('fs-extra')
+const yaml = require('js-yaml')
 const path = require('path')
 const ejs = require('ejs')
 const hljs = require('highlight.js')
@@ -17,7 +18,8 @@ const markdownIt = require('markdown-it')({
 });
 const frontMatter = require('front-matter')
 const globP = promisify(require('glob'))
-const config = require('../site.config')
+//const config = require('../site.config')
+const config = yaml.safeLoad(fse.readFileSync('/luxaura.yml', 'utf8'));
 
 const ejsRenderFile = promisify(ejs.renderFile)
 const distPath = './site'
@@ -47,7 +49,7 @@ globP('**/*.@(md|markdown|html|pug)', { cwd: `content` })
         .then((data) => {
           // render page
           const pageData = frontMatter(data)
-          const templateConfig = Object.assign({}, config, { page: pageData.attributes })
+          const templateConfig = Object.assign({}, '{\n "site":\n' + config + '\n}', { page: pageData.attributes })
           let pageContent
 
           // generate page content according to file type
